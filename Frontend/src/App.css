@@ -85,17 +85,20 @@ nav .search .fa + .fa {
 .add_form{
   margin-top: 100px;
 }
-.add_form .card {
+.add_form .fields .card {
   width: 60%;
   border-radius: 15px;
   background-color:#CECECE;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  top: -400px;
+  margin-left: 450px;
   margin-bottom: 20px;
 }
 .add_form .btn{
-  margin-left: 980px;
+  position: relative;
+  top: -400px;
+  margin-left: 1120px;
   background-color: #fe8033;
   color: #fff;
 }
@@ -116,7 +119,7 @@ nav .search .fa + .fa {
 
 .main_content h3 {
   position: absolute;
-  left: 0;
+  left: 150px;
   top: 0;
   color: #2d343e;
   font-size: 10.5vw;

@@ -25,11 +25,11 @@ export default function MainContent() {
     <div className="container">
       <Header />
       <div className="main_content">
-        <h3>Headphones</h3>
+        <h3>Confledis</h3>
         {Data.map((item) => (
-          <div className="card" key={item.id}>
+         <div className="card" key={item._id}>
             <div className="card_img">
-              <img src="/images/1.png" />
+              <img src={item.image} />
             </div>
             <div className="card_header">
               <h2>{item.nom}</h2>
@@ -37,7 +37,9 @@ export default function MainContent() {
                 {item.prix}
                 <span>euro</span>
               </p>
-              <div className="btn">Add to cart</div>
+              <Link style={{ color: 'white', cursor: 'pointer', outline: 'none', textDecoration: 'none' }} to={`/details/${item._id}`}>
+              <div className="btn">Product Details</div>
+              </Link>
             </div>
           </div>
         ))}
