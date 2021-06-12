@@ -3,27 +3,56 @@ import axios from "axios";
 import Header from "./header";
 import Footer from "./footer";
 import { Link } from 'react-router-dom';
+import {
+	Paper,
+	Icon,
+	Input
+} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 export default function MainContent() {
   const [Data, setData] = useState([{
     nom: "",
     description: "",
     image: "",
-    quantite: 0,
-    prix: 0,
+    quantite: "",
+    prix: "",
   }]);
+  //*******affichage + search *******
+	const [search, setsearch] = useState({
+		title: ''
+	});
   useEffect(async () => {
-    const products = await axios
+    if (search.title !== '') {
+			const products = await axios
+      .get(`http://localhost:4000/product/search/${search.title}`)
+      .then(function (response) {
+        setData(response.data);
+      });
+		} else {
+			const products = await axios
       .get("http://localhost:4000/product")
       .then(function (response) {
         setData(response.data);
       });
-    console.log(products);
-  }, []);
+		}
+  }, [search]);
 
   return (
     <div className="container">
       <Header />
+      
+      <Paper  style={{display:'flex',flexDirection:'column'}}>
+        <SearchIcon color="action">search</SearchIcon>
+        <Input
+          placeholder="Search"
+          value={search.title}
+          onChange={(e) => setsearch({ ...search, title: e.target.value })}
+          className="px-16"
+        />
+      </Paper>
+      
+      {Data.nom!="" ?(
       <div className="main_content">
         <h3>Confledis</h3>
         {Data.map((item) => (
@@ -59,6 +88,9 @@ export default function MainContent() {
           </div>
         </Link>
       </div>
+      ):(
+        <p>There iS No Products</p>
+      )}
       <Footer />
     </div>
   );

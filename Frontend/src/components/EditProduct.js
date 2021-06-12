@@ -12,8 +12,8 @@ import FormUploadImage from "./FormUploadImage";
 import { store } from 'react-notifications-component';
 import ReactNotification from 'react-notifications-component';
 
-export default function AddProduct() {
-  
+export default function AddProduct(props) {
+    const idProduct = props.match.params.id;
   const [productData, setProduct] = useState({
     nom: "",
     description: "",
@@ -21,6 +21,14 @@ export default function AddProduct() {
     quantite: "",
     prix: "",
   });
+  useEffect(async () => {
+    const product = await axios
+      .get(`http://localhost:4000/product/${idProduct}`)
+      .then(function (response) {
+        setProduct(response.data);
+      });
+    console.log(product);
+  }, []);
   const history = useHistory();
   //*************Success Notification*************
   function Success() {
@@ -39,14 +47,12 @@ export default function AddProduct() {
       });
   }
   //*************add Product*************
-  const Submit = (e) => {
-    axios
-      .post("http://localhost:4000/product", productData)
-      .then(function (response) {
-        setProduct(response.data);
-        history.push("/");
-      });
-  };
+  const Submit = async (e) => {
+    const uri = "http://localhost:4000/product";
+    await axios.patch(`${uri}/${idProduct}`,productData).then(function (response) {
+    history.push("/");
+    });
+    };
   //*************On change add image*************
   function handleUploadChange(e) {
     const file = e.target.files[0];
@@ -207,7 +213,7 @@ export default function AddProduct() {
         
         <div >
           <Button className="btn" aria-label="add" type="submit">
-            Add
+            Edit
           </Button>
         </div>
       </form>

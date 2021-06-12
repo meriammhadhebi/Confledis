@@ -95,6 +95,24 @@ nav .search .fa + .fa {
   margin-left: 450px;
   margin-bottom: 20px;
 }
+.add_form .fields .cardSingle {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+  margin-left: 400px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.product_description{
+  display:flex;
+  flex-direction:column;
+  position: relative;
+  right: 600px;
+}
+.product_description h1, span,p{
+  margin-bottom: 20px;
+}
 .add_form .btn{
   position: relative;
   top: -400px;
@@ -205,6 +223,22 @@ nav .search .fa + .fa {
   -webkit-transition: background-color .3s ease;
   transition: background-color .3s ease;
   overflow: hidden;
+}
+
+.search{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.search:focus{
+  width: 100%;
 }
 
 .footer {
